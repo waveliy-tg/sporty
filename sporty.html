@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>sporty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#efe3ff;--dots:#dcc6ff;--ink:#2d1050;--win:#fbf6ff;--bar:#9b5de5;--bar2:#c77dff;
+  --chip:#e8d8ff;--line:#6a2fb0;--muted:#7a5aa6;--barink:#fff;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#1b0b33;--dots:#2a1050;--ink:#f1e6ff;--win:#2b1550;--bar:#7b3fd1;--bar2:#b06cf0;--chip:#41226f;--line:#c9a0ff;--muted:#b79be0;--barink:#fff}
+}
+:root[data-theme="dark"]{--bg:#1b0b33;--dots:#2a1050;--ink:#f1e6ff;--win:#2b1550;--bar:#7b3fd1;--bar2:#b06cf0;--chip:#41226f;--line:#c9a0ff;--muted:#b79be0;--barink:#fff}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);background-color:var(--bg);
+  background-image:radial-gradient(var(--dots) 2px,transparent 2.5px);background-size:22px 22px;
+  font:600 16px/1.5 "Nunito",system-ui,sans-serif}
+main{max-width:760px;margin:0 auto;padding:28px 16px 48px}
+.hero{text-align:center;padding:12px 0 28px}
+.stars{margin:0;font-size:20px;letter-spacing:2px}
+h1{font:400 clamp(64px,22vw,132px)/1 "Bagel Fat One","Nunito",sans-serif;margin:6px 0 10px;color:#fff;
+  -webkit-text-stroke:3px var(--line);paint-order:stroke fill;text-shadow:6px 6px 0 var(--bar2);letter-spacing:2px}
+.bitch{margin:0 auto;max-width:34ch;font-weight:800;color:var(--ink)}
+.win{background:var(--win);border:2px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);margin:0 0 26px;overflow:hidden}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 12px;
+  background:linear-gradient(90deg,var(--bar),var(--bar2));color:var(--barink);font-weight:800}
+.bar h2{margin:0;font-size:16px;font-weight:800}
+.dots{display:flex;gap:5px;flex:none}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--win);border:2px solid var(--line)}
+.body{padding:16px}
+.body p{margin:0 0 8px}
+.hint{color:var(--muted);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.chips li{background:var(--chip);border:2px solid var(--line);border-radius:999px;padding:3px 12px;font-size:15px;
+  transition:transform .15s}
+.chips li:hover{transform:rotate(-3deg) scale(1.06)}
+.chips li.no{text-decoration:line-through;opacity:.6}
+.chips li.add{background:transparent;border-style:dashed;color:var(--muted)}
+.clock{margin:0;text-align:center;font:400 clamp(40px,14vw,72px)/1 "Bagel Fat One","Nunito",sans-serif;font-variant-numeric:tabular-nums}
+.clock-sub{margin:8px 0 0;text-align:center}
+.foot{text-align:center;font-size:22px;letter-spacing:4px;margin-top:8px}
+@media (prefers-reduced-motion:reduce){.chips li{transition:none}}
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <p class="stars">⭐⭐⭐⭐ ♫ . . . 🐚</p>
+    <p class="stars">⭐⭐⭐</p>
+    <h1>sporty</h1>
+    <p class="bitch">⋆ ࣪. 🌟🪦🌟 B.I.T.C.H🌟- beautiful, intelligent, talented, charming and hot !</p>
+  </header>
+
+  <section class="win">
+    <div class="bar"><h2>🕐 Мой часовой пояс</h2><span class="dots"><i></i><i></i><i></i></span></div>
+    <div class="body">
+      <p class="clock" id="minsk">--:--:--</p>
+      <p class="clock-sub" id="local"></p>
+      <p class="clock-sub" id="diff"></p>
+    </div>
+  </section>
+
+  <section class="win">
+    <div class="bar"><h2>⭐ Roblox</h2><span class="dots"><i></i><i></i><i></i></span></div>
+    <div class="body"><ul class="chips" id="roblox"></ul></div>
+  </section>
+
+  <section class="win">
+    <div class="bar"><h2>💜 Остальные фандомы</h2><span class="dots"><i></i><i></i><i></i></span></div>
+    <div class="body"><ul class="chips" id="other"></ul></div>
+  </section>
+
+  <section class="win">
+    <div class="bar"><h2>🎬 Фильмы и сериалы</h2><span class="dots"><i></i><i></i><i></i></span></div>
+    <div class="body"><ul class="chips" id="films"></ul></div>
+  </section>
+
+  <section class="win">
+    <div class="bar"><h2>🎭 кинн-лист</h2><span class="dots"><i></i><i></i><i></i></span></div>
+    <div class="body"><ul class="chips" id="kin"></ul></div>
+  </section>
+
+  <p class="foot">💫✨🖤💫✨🖤💫✨🖤💫✨</p>
+</main>
+<script>
+// Чтобы зачеркнуть пункт, поставь перед ним ~
+const lists = {
+  roblox: ["роблокс","роблокс мифы (олд, хаккеры, орг, создатели)","рояль хай","эвейд","gasa4","grocery gang","сенчоус","RNABS","файтинг","need more heat","soybean","kavra","work at pizza place","tr:ud","hello John doe","~форсакен","подонки","рейнбоу френдс","дорс","аперафобия","the last guest","dti","welcome to happywillie","block tales","bad things","the moon I rot behind","a nastolgic hangout game","кэт ретурнс"],
+  other: ["умг","scp","фнаф","дсаф","rat eyes","форчан","реддит","жуткий месяц","капхед","бенди","the Stanley parable","your boyfriend","rayman legends","гача клуб (вондеренд)","кубиксы","dick figures","the Henry stickmin collection","южный парк","~ох","аб","шаранутый космос","каталог манделлы","дыдла панда","алан беккер","invader zim","ihnmaims","heathers","инмт","бфи","бфди","тпот","фнф","культ ягненка","секай","аманда путешественница","уцц","goat","привет шарлотта","stomach book","issbrokie","nso","tcoaal","pepoyo","типологии"],
+  films: ["эйфория","дневник слабака","дьявол носит прада","дрянные девчонки","оторва","тело дженнифер","блондинка в законе","и т.д."],
+  kin: ["Кэди Херон","Принцесса Кэролин","Бараш","Вероника Сойер","Гамбол Уоттерсон","Стэн Марш","Сансет Шиммер","Кэсси Ховард"]
+};
+for (const [id, items] of Object.entries(lists)) {
+  const ul = document.getElementById(id);
+  for (const t of items) {
+    const li = document.createElement("li");
+    if (t.startsWith("~")) { li.className = "no"; li.textContent = t.slice(1); }
+    else if (t.startsWith("+")) { li.className = "add"; li.textContent = t; }
+    else li.textContent = t;
+    ul.appendChild(li);
+  }
+}
+
+// Часы: время Минска и разница с временем на устройстве
+function offsetMin(tz, d) {
+  const o = {};
+  new Intl.DateTimeFormat("en-GB", {timeZone: tz, hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit"})
+    .formatToParts(d).forEach(p => o[p.type] = p.value);
+  return (Date.UTC(o.year, o.month - 1, o.day, o.hour, o.minute, o.second) - Math.floor(d / 1000) * 1000) / 60000;
+}
+function tick() {
+  const now = new Date();
+  document.getElementById("minsk").textContent = now.toLocaleTimeString("ru-RU", {timeZone: "Europe/Minsk", hour12: false});
+  document.getElementById("local").textContent = "У тебя сейчас: " + now.toLocaleTimeString("ru-RU", {hour12: false});
+  const diff = offsetMin("Europe/Minsk", now) - (-now.getTimezoneOffset());
+  const a = Math.abs(diff), h = Math.floor(a / 60), m = a % 60;
+  const span = (h ? h + " ч " : "") + (m ? m + " мин" : "");
+  document.getElementById("diff").textContent = diff === 0 ? "Время одинаковое"
+    : "В Минске на " + span.trim() + (diff > 0 ? " больше" : " меньше");
+}
+tick();
+setInterval(tick, 1000);
+</script>
+</body>
+</html>
